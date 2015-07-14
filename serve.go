@@ -28,7 +28,7 @@ func main() {
 	// See https://groups.google.com/a/letsencrypt.org/forum/#!topic/ca-dev/l1Dd6jzWeu8
 	/*
 		if strings.HasPrefix("www.", host) {
-			fmt.Println("Because www.example.com is also example.com")
+			fmt.Println("TODO: 'www.' prefixed certs should be obtained for every 'example.com' domain.")
 		}
 		host = strings.TrimPrefix("www.", host)
 	*/
