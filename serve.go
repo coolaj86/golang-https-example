@@ -131,7 +131,8 @@ func main() {
 				"--agree-eula",
 				"--email", "coolaj86@gmail.com",
 				"--authenticator", "standalone",
-				"--domains", "www.example.com", "example.com",
+				"--domains", "www.example.com",
+				"--domains", "example.com",
 				"--dvsni-port", "65443",
 				"auth",
 			)
