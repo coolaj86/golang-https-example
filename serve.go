@@ -11,6 +11,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/inconshreveable/go-vhost"
 )
 
 func usage() {
@@ -28,6 +30,57 @@ type myHandler struct {
 type myCert struct {
 	cert      *tls.Certificate
 	touchedAt time.Time
+}
+
+type myListener struct {
+	listener net.Listener
+	// httpChan chan net.Conn
+}
+
+func proxy(conn *net.Conn) {
+	// something with a channel?
+}
+
+func (l *myListener) Accept() (net.Conn, error) {
+
+	proxyAcme := func(conn *net.Conn) (bool, error) {
+		tlsConn, err := vhost.TLS(*conn)
+		if nil != err {
+			return false, err
+		}
+
+		if strings.HasSuffix(tlsConn.Host(), ".acme.invalid") {
+			fmt.Println("TODO proxy connection")
+			// go proxy(&tlsConn)
+			//return true, nil
+		}
+		return false, nil
+	}
+
+	for {
+		conn, err := l.listener.Accept()
+		if nil != err {
+			return conn, err
+		}
+
+		mine, err := proxyAcme(&conn)
+		if nil != err {
+			return nil, err
+		}
+
+		if mine {
+			continue
+		}
+
+		return conn, nil
+	}
+}
+
+func (l *myListener) Close() error {
+	return l.listener.Close()
+}
+func (l *myListener) Addr() net.Addr {
+	return l.listener.Addr()
 }
 
 func (m *myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
