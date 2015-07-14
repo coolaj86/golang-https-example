@@ -25,7 +25,9 @@ Run the server
 
 ```bash
 # Run the Code
-go run serve.go --port 8443 --letsencrypt-dir=./etc/letsencrypt/live/
+go run serve.go \
+  --port 8443 \
+  --letsencrypt-path=./etc/letsencrypt/live/
 ```
 
 View it in your browser
