@@ -54,7 +54,7 @@ func main() {
 
 	port := flag.Uint("port", 443, "https port")
 	certsPath := flag.String("letsencrypt-path", "/etc/letsencrypt/live", "path at which an 'xyz.example.com' containing 'fullchain.pem' and 'privkey.pem' can be found")
-	defaultHost := flag.String("default-hostname", "localhost.daplie.com", "the default folder to find certificates to use when no matches are found")
+	defaultHost := flag.String("default-hostname", "localhost.rootprojects.org", "the default folder to find certificates to use when no matches are found")
 
 	flag.Parse()
 
