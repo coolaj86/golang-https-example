@@ -1,3 +1,7 @@
+# Moved
+
+See <https://git.coolaj86.com/coolaj86/golang-https-example>
+
 # golang-https-example
 
 A TLS / SSL enabled WebServer in Go, done right - includes valid https certificates.
